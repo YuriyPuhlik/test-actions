@@ -1,5 +1,12 @@
 name: GitHub Actions Demo
-on: [workflow_dispatch]
+on: 
+  workflow_dispatch:
+    inputs:
+      kinda-message:
+        description: 'Kinda message to say hello'
+        required: false
+        type: string
+        default: 'oh hi Mark'
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
