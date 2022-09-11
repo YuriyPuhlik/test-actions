@@ -2,23 +2,43 @@ name: GitHub Actions Demo
 on: 
   workflow_dispatch:
     inputs:
-      kinda-message:
-        description: 'Kinda message to say hello'
+      customer:
+        description: "The Customer Name for whom the new Trial Org is created"
+        required: true
+      username:
+        description: "Username for the new Trial Org"
+        required: true
+      email:
+        description: "E-Mail for user in the new Trial Org"
+        required: true
+      templateId:
+        description: "The 15-character ID of the Trialforce template that is the basis for the Trial sign-up"
+        required: true
+        default: "0TT8c00000DNGzo"
+      trialOrgCreateParams:
+        description: |
+          Optional parameters for the Signup Request (example: "Country='US' Company='Sage People' firstName='John' lastName='Doe'")
         required: false
-        type: string
-        default: 'oh hi Mark'
+        default: "Country='US' Company='Sage People' firstName='Sage People' lastName='System Support'"
+      whereClausule:
+        description: "WHERE parameter used by Configuration Library to determine which records and metadata to deploy"
+        required: true
+        default: "Source_Label_Category__c = 'Install Master'"
+      additionalParams:
+        description: "Example --dry-run --with-profiles"
+        required: false
+        default: "--with-profiles"
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event. kinda message ${{ inputs.kinda-message }}"
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
+      - run: echo "Customer - ${{ inputs.customer }}"
+      - run: echo "Username - ${{ inputs.username }}"
+      - run: echo "Email - ${{ inputs.email }}"
+      - run: echo "TemplateId - ${{ inputs.templateId }}"
+      - run: echo "TrialOrgCreateParams - ${{ inputs.trialOrgCreateParams }}"
+      - run: echo "WhereClausule - ${{ inputs.whereClausule }}"
+      - run: echo "AdditionalParams - ${{ inputs.additionalParams }}"
       - run: echo "🍏 This job's status is ${{ job.status }}."
