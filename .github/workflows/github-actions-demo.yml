@@ -6,28 +6,35 @@ on:
         description: "The Customer Name for whom the new Trial Org is created"
         required: true
       username:
-        description: "Username for the new Trial Org"
+        description: "Username for the new org (lowercase)"
         required: true
       email:
         description: "E-Mail for user in the new Trial Org"
         required: true
+      lastname:
+        description: "The LastName of the user for whom the new Trial Org is created"
+        default: "System Support"
+        required: true
+      country:
+        description: "The two-character, uppercase ISO-3166 country code (US, GB,...)"
+        default: "US"
+        required: true
       templateId:
         description: "The 15-character ID of the Trialforce template that is the basis for the Trial sign-up"
         required: true
-        default: "0TT8c00000DNGzo"
+        default: "0TT8c00000DuCXD"
       trialOrgCreateParams:
         description: |
-          Optional parameters for the Signup Request (example: "Country='US' Company='Sage People' firstName='John' lastName='Doe'")
+          Optional parameters for the Signup Request (example: "FirstName='John'")
         required: false
-        default: "Country='US' Company='Sage People' firstName='Sage People' lastName='System Support'"
-      whereClausule:
+        default: "FirstName='Sage People'"
+      whereClause:
         description: "WHERE parameter used by Configuration Library to determine which records and metadata to deploy"
         required: true
         default: "Source_Label_Category__c = 'Install Master'"
       additionalParams:
-        description: "Example --dry-run --with-profiles"
+        description: "Example --dry-run"
         required: false
-        default: "--with-profiles"
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
