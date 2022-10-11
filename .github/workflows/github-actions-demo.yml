@@ -1,8 +1,7 @@
 name: GitHub Actions Demo
 on: 
   workflow_dispatch:
-    inputs:
-      customer:
+customer:
         description: "The Customer Name for whom the new Trial Org is created"
         required: true
       username:
@@ -33,8 +32,9 @@ on:
         required: true
         default: "Source_Label_Category__c = 'Install Master'"
       additionalParams:
-        description: "Example --dry-run"
+        description: "Example --dry-run --with-profiles"
         required: false
+        default: "--with-profiles"
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
