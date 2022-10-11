@@ -1,7 +1,8 @@
 name: GitHub Actions Demo
-on: 
+on:
   workflow_dispatch:
-customer:
+    inputs:
+      customer:
         description: "The Customer Name for whom the new Trial Org is created"
         required: true
       username:
