@@ -37,7 +37,7 @@ on:
         required: false
         default: "--with-profiles"
 jobs:
-  Explore-GitHub-Actions:
+  Explore-GitHub-Actions: upd YP
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
